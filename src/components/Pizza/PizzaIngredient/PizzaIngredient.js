@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import propTypes from 'prop-types';
-import classes from './PizzaIngredient.css';
+import classes from './PizzaIngredient.module.css';
 
 class PizzaIngredient extends Component {
     render() {
@@ -13,8 +13,8 @@ class PizzaIngredient extends Component {
             case('bread-top'):
                 ingredient = (
                     <div className={classes.BreadTop}>
-                        <div class={classes.Seeds1}></div>
-                        <div class={classes.Seeds2}></div>
+                        <div className={classes.Seeds1}></div>
+                        <div className={classes.Seeds2}></div>
                     </div>
                 );
                 break;
@@ -33,6 +33,7 @@ class PizzaIngredient extends Component {
             default:
                 ingredient = null;
         }
+        return ingredient;
     }
 }
 
