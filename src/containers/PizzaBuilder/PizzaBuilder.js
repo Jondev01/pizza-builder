@@ -50,12 +50,19 @@ class PizzaBuilder extends Component {
 
 
     render () {
+        const disabledInfo = {
+            ...this.state.ingredients
+        };
+        for(let key in disabledInfo){
+            disabledInfo[key] = disabledInfo[key] <= 0;
+        }
         return (
             <Auxillary>
                 <Pizza ingredients = {this.state.ingredients} />
                 <BuildControls 
                     ingredientAdded={this.addIngredientHandler} 
-                    ingredientRemoved={this.removeIngredientHandler} />
+                    ingredientRemoved={this.removeIngredientHandler} 
+                    disabled={disabledInfo} />
             </Auxillary>
 
         );
