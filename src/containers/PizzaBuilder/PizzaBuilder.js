@@ -32,6 +32,10 @@ class PizzaBuilder extends Component {
         this.setState({purchasing: false});
     }
 
+    purchaseContinueHandler = () => {
+        alert('You continue');
+    }
+
     updatePurchaseState(ingredients) {
         const sum = Object.keys(ingredients)
             .map( ingKey => ingredients[ingKey])
@@ -80,7 +84,12 @@ class PizzaBuilder extends Component {
         return (
             <Auxillary>
                 <Modal show={this.state.purchasing} modalClosed={this.purchaseCancelHandler}> 
-                    <OrderSummary ingredients={this.state.ingredients} />
+                    <OrderSummary 
+                        ingredients={this.state.ingredients} 
+                        purchaseCancelled={this.purchaseCancelHandler}
+                        purchaseContinued={this.purchaseContinueHandler}
+
+                        />
                 </Modal>
                 <Pizza ingredients = {this.state.ingredients} />
                 <BuildControls 
