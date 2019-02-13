@@ -20,7 +20,12 @@ class PizzaBuilder extends Component {
             meat: 0
         },
         totalPrice: 4,
-        purchaseable: false
+        purchaseable: false,
+        purchasing: false
+    }
+
+    purchaseHandler = () => {
+        this.setState({purchasing: true});
     }
 
     updatePurchaseState(ingredients) {
@@ -70,7 +75,7 @@ class PizzaBuilder extends Component {
         }
         return (
             <Auxillary>
-                <Modal>
+                <Modal show={this.state.purchasing}> 
                     <OrderSummary ingredients={this.state.ingredients} />
                 </Modal>
                 <Pizza ingredients = {this.state.ingredients} />
@@ -79,7 +84,8 @@ class PizzaBuilder extends Component {
                     ingredientRemoved={this.removeIngredientHandler} 
                     disabled={disabledInfo} 
                     price={this.state.totalPrice} 
-                    purchaseable={this.state.purchaseable} />
+                    purchaseable={this.state.purchaseable} 
+                    ordered={this.purchaseHandler} />
             </Auxillary>
 
         );
