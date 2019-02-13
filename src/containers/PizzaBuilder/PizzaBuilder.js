@@ -28,6 +28,10 @@ class PizzaBuilder extends Component {
         this.setState({purchasing: true});
     }
 
+    purchaseCancelHandler = () =>{
+        this.setState({purchasing: false});
+    }
+
     updatePurchaseState(ingredients) {
         const sum = Object.keys(ingredients)
             .map( ingKey => ingredients[ingKey])
@@ -75,7 +79,7 @@ class PizzaBuilder extends Component {
         }
         return (
             <Auxillary>
-                <Modal show={this.state.purchasing}> 
+                <Modal show={this.state.purchasing} modalClosed={this.purchaseCancelHandler}> 
                     <OrderSummary ingredients={this.state.ingredients} />
                 </Modal>
                 <Pizza ingredients = {this.state.ingredients} />
