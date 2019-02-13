@@ -14,18 +14,19 @@
 
 .Logo {
     height: 11%;
+    margin: 32px;
+}
+
+.Open {
+    transform: translateX(0);
+}
+
+.Close {
+    transform: translateX(-100%);
 }
 
 @media (min-width: 500px){
     .SideDrawer {
         display: none;
-    }
-
-    .Open {
-        transform: translateX(0);
-    }
-
-    .Close {
-        transform: translateX(-100%);
     }
 }
