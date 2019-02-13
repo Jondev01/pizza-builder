@@ -19,6 +19,7 @@ class Layout extends Component {
             return {showSideDrawer: !prevState.showSideDrawer};
         });
     }
+    
     render() {
         return (
             <Auxillary>
