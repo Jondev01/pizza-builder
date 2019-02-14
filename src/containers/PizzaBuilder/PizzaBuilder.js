@@ -4,6 +4,7 @@ import Pizza from '../../components/Pizza/Pizza';
 import BuildControls from '../../components/Pizza/BuildControls/BuildControls';
 import Modal from '../../components/UI/Modal/Modal';
 import OrderSummary from '../../components/Pizza/OrderSummary/OrderSummary';
+import axios from '../../axios-orders';
 
 const INGREDIENT_PRICES = {
     salad: 0.5,
@@ -33,7 +34,27 @@ class PizzaBuilder extends Component {
     }
 
     purchaseContinueHandler = () => {
-        alert('You continue');
+        const order = {
+            ingredients: this.state.ingredients,
+            price: this.state.totalPrice,
+            customer: {
+                name: 'John Doe',
+                address: {
+                    street: 'teststreet 23',
+                    zipCode: '22312 ',
+                    country: 'USA'
+                },
+                email: 'test@test.com'
+            },
+            deliveryMethod: 'fastest'
+        }
+        axios.post('/orders.json', order)
+        .then(response => {
+            console.log(response);
+        })
+        .catch( error => {
+            console.log(error);
+        });
     }
 
     updatePurchaseState(ingredients) {
