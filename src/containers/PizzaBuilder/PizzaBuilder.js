@@ -5,6 +5,7 @@ import BuildControls from '../../components/Pizza/BuildControls/BuildControls';
 import Modal from '../../components/UI/Modal/Modal';
 import OrderSummary from '../../components/Pizza/OrderSummary/OrderSummary';
 import Spinner from '../../components/UI/Spinner/Spinner'
+import  withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler';
 import axios from '../../axios-orders';
 
 const INGREDIENT_PRICES = {
@@ -137,4 +138,4 @@ class PizzaBuilder extends Component {
     }
 }
 
-export default PizzaBuilder;
+export default withErrorHandler(PizzaBuilder, axios);
