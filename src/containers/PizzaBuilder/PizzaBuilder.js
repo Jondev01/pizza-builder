@@ -7,6 +7,7 @@ import OrderSummary from '../../components/Pizza/OrderSummary/OrderSummary';
 import Spinner from '../../components/UI/Spinner/Spinner'
 import  withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler';
 import axios from '../../axios-orders';
+import Checkout from '../Checkout/Checkout';
 
 const INGREDIENT_PRICES = {
     salad: 0.5,
@@ -43,31 +44,33 @@ class PizzaBuilder extends Component {
     }
 
     purchaseContinueHandler = () => {
-        this.setState({
-            loading: true
-        });
-        const order = {
-            ingredients: this.state.ingredients,
-            price: this.state.totalPrice,
-            customer: {
-                name: 'John Doe',
-                address: {
-                    street: 'teststreet 23',
-                    zipCode: '22312 ',
-                    country: 'USA'
-                },
-                email: 'test@test.com'
-            },
-            deliveryMethod: 'fastest'
-        }
-        axios.post('/orders.json', order)
-        .then(response => {
-            this.setState({loading: false, purchasing: false});
-        })
-        .catch( error => {
-            console.log(error);
-            this.setState({loading: false, purchasing: false});
-        });
+        // this.setState({
+        //     loading: true
+        // });
+        // const order = {
+        //     ingredients: this.state.ingredients,
+        //     price: this.state.totalPrice,
+        //     customer: {
+        //         name: 'John Doe',
+        //         address: {
+        //             street: 'teststreet 23',
+        //             zipCode: '22312 ',
+        //             country: 'USA'
+        //         },
+        //         email: 'test@test.com'
+        //     },
+        //     deliveryMethod: 'fastest'
+        // }
+        // axios.post('/orders.json', order)
+        // .then(response => {
+
+        //     this.setState({loading: false, purchasing: false});
+        // })
+        // .catch( error => {
+        //     console.log(error);
+        //     this.setState({loading: false, purchasing: false});
+        // });
+        this.props.history.push('/checkout');
     }
 
     updatePurchaseState(ingredients) {
