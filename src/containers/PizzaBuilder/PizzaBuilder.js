@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+
 import Auxillary from '../../hoc/Auxillary/Auxillary';
 import Pizza from '../../components/Pizza/Pizza';
 import BuildControls from '../../components/Pizza/BuildControls/BuildControls';
@@ -7,7 +8,6 @@ import OrderSummary from '../../components/Pizza/OrderSummary/OrderSummary';
 import Spinner from '../../components/UI/Spinner/Spinner'
 import  withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler';
 import axios from '../../axios-orders';
-import Checkout from '../Checkout/Checkout';
 
 const INGREDIENT_PRICES = {
     salad: 0.5,
