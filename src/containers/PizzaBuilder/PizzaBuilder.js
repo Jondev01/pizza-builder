@@ -13,8 +13,6 @@ import * as actionTypes from '../../store/actions';
 
 class PizzaBuilder extends Component {
     state = {
-        //ingredients : null,
-        //totalPrice: 4,
         purchasing: false,
         loading: false,
         error: false
@@ -58,37 +56,6 @@ class PizzaBuilder extends Component {
             .reduce( (acc, el) => acc+el, 0);
         return sum > 0;
     }
-
-    // addIngredientHandler = (type) => {
-    //     const oldCount = this.props.ings[type];
-    //     const updatedCount = oldCount + 1;
-    //     const updatedIngredients = {
-    //         ...this.props.ings
-    //     };
-    //     updatedIngredients[type] = updatedCount;
-    //     const priceAddition = INGREDIENT_PRICES[type];
-    //     const oldPrice = this.state.totalPrice;
-    //     const newPrice = oldPrice+priceAddition;
-    //     this.setState({totalPrice: newPrice, ingredients: updatedIngredients});
-    //     this.updatePurchaseState(updatedIngredients);
-    // }
-
-    // removeIngredientHandler = (type) => {
-    //     const oldCount = this.props.ings[type];
-    //     if(oldCount === 0)
-    //         return;
-    //     const updatedCount = oldCount - 1;
-    //     const updatedIngredients = {
-    //         ...this.props.ings
-    //     };
-    //     updatedIngredients[type] = updatedCount;
-    //     const priceReduction = INGREDIENT_PRICES[type];
-    //     const oldPrice = this.state.totalPrice;
-    //     const newPrice = oldPrice - priceReduction;
-    //     this.setState({totalPrice: newPrice, ingredients: updatedIngredients});
-    //     this.updatePurchaseState(updatedIngredients);
-    // }
-
 
     render () {
         const disabledInfo = {
