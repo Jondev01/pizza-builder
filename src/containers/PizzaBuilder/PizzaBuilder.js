@@ -14,8 +14,7 @@ import * as actionTypes from '../../store/actions';
 class PizzaBuilder extends Component {
     state = {
         //ingredients : null,
-        totalPrice: 4,
-        purchaseable: false,
+        //totalPrice: 4,
         purchasing: false,
         loading: false,
         error: false
@@ -57,7 +56,7 @@ class PizzaBuilder extends Component {
         const sum = Object.keys(ingredients)
             .map( ingKey => ingredients[ingKey])
             .reduce( (acc, el) => acc+el, 0);
-        this.setState({purchaseable: sum > 0});
+        return sum > 0;
     }
 
     // addIngredientHandler = (type) => {
@@ -110,7 +109,7 @@ class PizzaBuilder extends Component {
                             ingredientRemoved={this.props.onIngredientRemoved} 
                             disabled={disabledInfo} 
                             price={this.props.price} 
-                            purchaseable={this.state.purchaseable} 
+                            purchaseable={this.updatePurchaseState(this.props.ings)} 
                             ordered={this.purchaseHandler} />
                 </Auxillary>
             );
