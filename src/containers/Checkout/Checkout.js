@@ -35,13 +35,13 @@ class Checkout extends Component {
         return (
             <div>
                 <CheckoutSummary 
-                    ingredients={this.state.ingredients}
+                    ingredients={this.props.ings}
                     CheckoutCancelled={this.checkoutCancelledHandler}
                     CheckoutContinued={this.checkoutContinuedHandler}
                 />
                 <Route
                     path={this.props.match.path + '/contact-data'} 
-                    render={(props)=> (<ContactData ingredients={this.state.ingredients} price={this.state.totalPrice} {...props} />)} />
+                    render={(props)=> (<ContactData ingredients={this.props.ings} price={this.state.totalPrice} {...props} />)} />
             </div>
         );
     }
