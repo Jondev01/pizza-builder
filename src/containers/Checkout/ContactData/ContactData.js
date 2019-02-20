@@ -133,7 +133,6 @@ class ContactData extends Component {
             console.log(error);
             this.setState({loading: false});
         });
-
     }
 
     inputChangedHandler = (event, inputIdentifier) => {
