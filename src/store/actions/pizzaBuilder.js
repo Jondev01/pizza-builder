@@ -16,7 +16,6 @@ export const removeIngredient = (name) => {
 };
 
 const setIngredients = (ingredients) => {
-    console.log('[pizzaBuilder actions setIngredients]');
     return {
         type: actionTypes.SET_INGREDIENTS,
         ingredients: ingredients

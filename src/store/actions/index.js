@@ -4,4 +4,7 @@ export {
     initIngredients
 } from './pizzaBuilder';
 
-export {} from './order';
+export {
+    purchaseInit,
+    purchasePizza,
+} from './order';
