@@ -7,4 +7,5 @@ export {
 export {
     purchaseInit,
     purchasePizza,
+    fetchOrders
 } from './order';
