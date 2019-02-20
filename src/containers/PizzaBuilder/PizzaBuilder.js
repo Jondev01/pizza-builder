@@ -14,18 +14,10 @@ import * as actions from '../../store/actions/index';
 class PizzaBuilder extends Component {
     state = {
         purchasing: false,
-        loading: false,
-        error: false
     };
 
     componentDidMount () {
-        // axios.get('https://react-my-pizza.firebaseio.com/ingredients.json')
-        // .then(response => {
-        //     this.setState({ingredients: response.data});
-        // })
-        // .catch(error =>{
-        //     this.setState({error: true});
-        // }); 
+        this.props.onInitIngredients();
     }
 
     purchaseHandler = () => {
@@ -55,7 +47,7 @@ class PizzaBuilder extends Component {
             disabledInfo[key] = disabledInfo[key] <= 0;
         }
         let orderSummary = null;
-        let pizza = this.state.error ? <p>Ingredients can't be loaded</p> : <Spinner/>;
+        let pizza = this.props.error ? <p>Ingredients can't be loaded</p> : <Spinner/>;
 
         if(this.props.ings){
             pizza = (
@@ -94,13 +86,15 @@ class PizzaBuilder extends Component {
 const mapStateToProps = state => {
     return {
         ings: state.ingredients,
-        price: state.totalPrice
+        price: state.totalPrice,
+        error: state.error
     };
 }
 const mapDispatchToProps = dispatch => {
     return {
         onIngredientAdded: (ingName) => dispatch(actions.addIngredient(ingName)),
-        onIngredientRemoved: (ingName) => dispatch(actions.removeIngredient(ingName))
+        onIngredientRemoved: (ingName) => dispatch(actions.removeIngredient(ingName)),
+        onInitIngredients: () => dispatch(actions.initIngredients())
     };
 }
 
