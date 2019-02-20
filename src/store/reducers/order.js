@@ -1,4 +1,5 @@
 import * as actionTypes from '../actions/actionTypes';
+import { updateObject } from '../utility';
 
 const initialState = {
     orders: [],
@@ -6,51 +7,48 @@ const initialState = {
     purchased: false
 };
 
+const purchaseInit = (state, action) => {
+    return updateObject(state, {loading:true, purchased: false});
+}
+
+const purchasePizzaStart = (state, action) => {
+    return updateObject(state, {loading: true});
+}
+
+const purchasePizzaSuccess = (state, action) => {
+    return updateObject(state, {loading: false, orders: state.orders.concat({...action.orderData, id: action.orderId}), purchased: true});
+}
+
+const purchasePizzaFail = (state, action) => {
+    return updateObject(state, {loading: false});
+}
+
+const fetchOrdersStart = (state, action) => {
+    return updateObject(state, {loading: true}); 
+}
+
+const fetchOrdersSuccess = (state, action) => {
+    return updateObject(state, {orders: action.orders, loading: false});
+}
+
+const fetchOrdersFail = (state, action) => {
+    return updateObject(state, {loading: false});
+}
+
 const reducer = (state = initialState, action) => {
     switch(action.type) {
 
-        case actionTypes.PURCHASE_INIT:
-            return {
-                ...state,
-                loading: true,
-                purchased: false
-            };
+        case actionTypes.PURCHASE_INIT: return purchaseInit(state, action);
 
-        case actionTypes.PURCHASE_PIZZA_START:
-            return {
-                ...state,
-                loading: true,
-            };
-        case actionTypes.PURCHASE_PIZZA_SUCCESS:
-            return {
-                ...state,
-                loading: false,
-                orders: state.orders.concat({...action.orderData, id: action.orderId}),
-                purchased: true
-            };
-        case actionTypes.PURCHASE_PIZZA_FAIL:
-            return {
-                ...state,
-                loading: false
-            };
-        case actionTypes.FETCH_ORDERS_START:
-            return {
-                ...state,
-                loading: true
-            };
-        case actionTypes.FETCH_ORDERS_SUCCESS:
-            return {
-                ...state,
-                orders: action.orders,
-                loading: false
-            };
-        case actionTypes.FETCH_ORDERS_FAIL:
-            return {
-                ...state,
-                loading: false
-            };
-        default:
-            return state;
+        case actionTypes.PURCHASE_PIZZA_START: return purchasePizzaStart(state, action);
+        case actionTypes.PURCHASE_PIZZA_SUCCESS: return purchasePizzaSuccess(state, action);
+        case actionTypes.PURCHASE_PIZZA_FAIL: return purchasePizzaFail(state, action);
+
+        case actionTypes.FETCH_ORDERS_START: return fetchOrdersStart(state, action);
+        case actionTypes.FETCH_ORDERS_SUCCESS: return fetchOrdersSuccess(state, action);
+        case actionTypes.FETCH_ORDERS_FAIL: return fetchOrdersFail(state, action);
+        
+        default: return state;
     }
 };
 
