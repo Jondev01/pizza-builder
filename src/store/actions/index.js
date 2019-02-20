@@ -9,3 +9,8 @@ export {
     purchasePizza,
     fetchOrders
 } from './order';
+
+export {
+    auth
+} from './auth';
+
