@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
+import * as actions from './store/actions/index';
 import './App.css';
 import Layout from './hoc/Layout/Layout';
 import PizzaBuilder from './containers/PizzaBuilder/PizzaBuilder';
@@ -9,6 +11,10 @@ import Auth from './containers/Auth/Auth';
 import Logout from './containers/Auth/Logout/Logout';
 
 class App extends Component {
+
+  componentDidMount () {
+    this.props.onTryAutoSignin();
+  }
   render() {
     return (
       <div className="App">
@@ -26,4 +32,10 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapDispatchToProps = dispatch => {
+  return {
+    onTryAutoSignin: () => dispatch(actions.authCheckState())
+  };
+}
+
+export default withRouter(connect(null, mapDispatchToProps)(App));
